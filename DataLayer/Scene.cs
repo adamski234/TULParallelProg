@@ -4,7 +4,6 @@ public class Scene
 {
     public readonly int Width;
     public readonly int Height;
-    public bool Enabled = false;
     public readonly List<Ball> Balls = new List<Ball>();
 
     public Scene(int width, int height, int ballRadius, int ballCount)
@@ -33,8 +32,8 @@ public class Scene
             int overlapCounter = 0;
             foreach (var ball in Balls)
             {
-                double distanceBetweenCenters = Math.Sqrt(Math.Pow(ball.X - x, 2) + Math.Pow(ball.Y - y, 2));
-                if (distanceBetweenCenters < ballRadius + ball.radius)
+                double distanceBetweenCentres = Math.Sqrt(Math.Pow(ball.X - x, 2) + Math.Pow(ball.Y - y, 2));
+                if (distanceBetweenCentres < ballRadius + ball.radius)
                 {
                     overlapCounter++;
                 }

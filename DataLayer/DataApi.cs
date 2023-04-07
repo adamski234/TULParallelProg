@@ -3,10 +3,13 @@
 public abstract class AbstractDataApi
 {
     public abstract List<Ball> GetBalls();
+
+    public static AbstractDataApi CreateApi(int width, int height, int ballCount, int ballRadius)
+    {
+        return new DataApi(width, height, ballCount, ballRadius);
+    }
     internal class DataApi : AbstractDataApi
     {
-        private readonly object mutex = new object();
-        public bool enabled = true;
         public readonly Scene scene;
         public DataApi(int width, int height, int ballCount, int ballRadius)
         {
