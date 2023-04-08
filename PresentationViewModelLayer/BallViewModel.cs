@@ -24,17 +24,23 @@ namespace PresentationViewModelLayer
         }
 
         public void Start()
-        {
-            Model?.StopSimulation();
-            Model = new BallModel(BallNumber);
-            BallList = new ObservableCollection<Ball>(Model.GetBalls());
-            OnPropertyChanged(nameof(BallList));
-            Model.StartSimulation();
+        {   
+            if (BallNumber == BallList.Count)
+            {
+                Model?.StartSimulation();
+            } else
+            {
+                Model?.StopSimulation();
+                Model = new BallModel(BallNumber);
+                BallList = new ObservableCollection<Ball>(Model.GetBalls());
+                OnPropertyChanged(nameof(BallList));
+                Model.StartSimulation();
+            }
         }
 
         public void Stop()
         {
-            Model.StopSimulation();
+            Model?.StopSimulation();
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;
