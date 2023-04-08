@@ -3,6 +3,7 @@
 public abstract class AbstractDataApi
 {
     public abstract List<Ball> GetBalls();
+    public abstract Scene GetScene();
 
     public static AbstractDataApi CreateApi(int width, int height, int ballCount, int ballRadius)
     {
@@ -18,6 +19,10 @@ public abstract class AbstractDataApi
         public override List<Ball> GetBalls()
         {
             return scene.Balls;
+        }
+        public override Scene GetScene()
+        {
+            return scene;
         }
     }
 }

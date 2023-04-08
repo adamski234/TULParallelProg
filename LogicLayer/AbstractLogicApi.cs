@@ -34,7 +34,7 @@ namespace LogicLayer
 				this.enabled = true;
 				foreach (var ball in this.GetBalls())
 				{
-					logicList.Add(new BallLogic(ball, ref mutex));
+					logicList.Add(new BallLogic(ball, ref mutex, data.GetScene().Width, data.GetScene().Height));
 				}
 			}
 
@@ -43,7 +43,7 @@ namespace LogicLayer
 				this.enabled = false;
                 foreach (var logic in logicList)
                 {
-					logic.Stop();
+                    logic.Stop();
                 }
                 this.logicList.Clear();
 			}
