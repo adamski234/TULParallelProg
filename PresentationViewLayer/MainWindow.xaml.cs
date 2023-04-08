@@ -1,4 +1,6 @@
-﻿using System.Text;
+﻿using DataLayer;
+using PresentationViewModelLayer;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -15,10 +17,11 @@ namespace PresentationViewLayer
 	/// Interaction logic for MainWindow.xaml
 	/// </summary>
 	public partial class MainWindow : Window
-	{
-		public MainWindow()
+	{	
+        public MainWindow()
 		{
 			InitializeComponent();
 		}
-	}
+
+    }
 }

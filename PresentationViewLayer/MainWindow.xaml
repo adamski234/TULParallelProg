@@ -3,10 +3,50 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:PresentationViewLayer"
+        xmlns:dc="clr-namespace:PresentationViewModelLayer;assembly=PresentationViewModelLayer" 
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="Super Magiczne Kulka" Height="700" Width="1200">
 
+    <Grid>
+        <Grid.DataContext>
+            <dc:BallViewModel></dc:BallViewModel>
+        </Grid.DataContext>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1000"></ColumnDefinition>
+            <ColumnDefinition Width="200"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+
+
+        </Grid.RowDefinitions>
+
+        <ItemsControl Grid.Column="0" Grid.RowSpan="10" Width="900" Height="600" ItemsSource="{Binding BallList}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Canvas Width="900" Height="600" Background="Gray"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemContainerStyle>
+                <Style>
+                    <Setter Property="Canvas.Left" Value="{Binding X}"/>
+                    <Setter Property="Canvas.Top" Value="{Binding Y}"/>
+                </Style>
+            </ItemsControl.ItemContainerStyle>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Ellipse Height="{Binding Radius}" Width="{Binding Radius}" Fill="Black"/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+        <Label Margin="0, 50" Grid.Column="1" Grid.Row="0" HorizontalContentAlignment="Center" FontSize="25" Content="Numer of balls"></Label>
+        <TextBox Grid.Column="1" Grid.Row="0" TextAlignment="Center" Width="150" Height="17" Text="{Binding BallNumber}"></TextBox>
+        <Button Grid.Column="1" Grid.Row="1" Content="Start" Width="150" Height="40" FontSize="25" Command="{Binding StartSimulationCommand}"></Button>
+        <Button Grid.Column="1" Grid.Row="2" Content="Stop" Width="150" Height="40" FontSize="25" Command="{Binding StopSimulationCommand}"></Button>
     </Grid>
+
+
 </Window>

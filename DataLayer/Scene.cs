@@ -33,7 +33,7 @@ public class Scene
             foreach (var ball in Balls)
             {
                 double distanceBetweenCentres = Math.Sqrt(Math.Pow(ball.X - x, 2) + Math.Pow(ball.Y - y, 2));
-                if (distanceBetweenCentres < ballRadius + ball.radius)
+                if (distanceBetweenCentres < ballRadius + ball.Radius)
                 {
                     overlapCounter++;
                 }

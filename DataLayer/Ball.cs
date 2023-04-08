@@ -7,7 +7,7 @@ public class Ball : INotifyPropertyChanged
 {
     private double x;
     private double y;
-    public readonly double radius;
+    public double Radius { get; set; }
     public double speedX;
     public double speedY;
 
@@ -15,7 +15,7 @@ public class Ball : INotifyPropertyChanged
     {
         this.x = x;
         this.y = y;
-        this.radius = radius;
+        this.Radius = radius;
         Random source = new Random();
         do
         {
