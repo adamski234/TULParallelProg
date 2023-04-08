@@ -13,11 +13,8 @@ namespace PresentationViewModelLayer
 	{
 		public ObservableCollection<Ball> BallList { get; set; } = new ObservableCollection<Ball>();
         public int BallNumber { get; set; }
-
         public BallModel? Model { get; set; }
-
         public ICommand StartSimulationCommand { get; set; }
-
         public ICommand StopSimulationCommand { get; set; }
 
         public BallViewModel()

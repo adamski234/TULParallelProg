@@ -19,8 +19,8 @@ public class BallLogic
                 Random source = new Random();
                 lock (mutex)
                 {
-                    this.ball.X += source.Next(-30, 30);
-                    this.ball.Y += source.Next(-30, 30);
+                    this.ball.X += source.Next(-5, 5);
+                    this.ball.Y += source.Next(-5, 5);
                 }
                 Thread.Sleep(50); // 20 tps tickrate
             }
