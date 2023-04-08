@@ -27,7 +27,7 @@ public class BallLogic
 				{
 					moveX = source.Next(-5, 5);
 					moveY = source.Next(-5, 5);
-					Trace.WriteLine($"{moveX} {moveY} {ball.X} {ball.Y} {sceneHeight} {sceneWidth}");
+					//Trace.WriteLine($"{moveX} {moveY} {ball.X} {ball.Y} {sceneHeight} {sceneWidth}");
 				} while (!(
 					(this.ball.X + moveX) > 0 && (this.ball.X + moveX) < (sceneWidth - this.ball.Radius) &&
 					(this.ball.Y + moveY) > 0 && (this.ball.Y + moveY) < (sceneHeight - this.ball.Radius)
