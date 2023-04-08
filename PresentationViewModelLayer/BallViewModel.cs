@@ -25,6 +25,7 @@ namespace PresentationViewModelLayer
 
         public void Start()
         {
+            Model?.StopSimulation();
             Model = new BallModel(BallNumber);
             BallList = new ObservableCollection<Ball>(Model.GetBalls());
             OnPropertyChanged(nameof(BallList));

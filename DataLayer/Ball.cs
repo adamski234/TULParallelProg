@@ -7,7 +7,7 @@ public class Ball : INotifyPropertyChanged
 {
     private double x;
     private double y;
-    public double Radius { get; set; }
+    public double Radius { get; }
     public double speedX;
     public double speedY;
 

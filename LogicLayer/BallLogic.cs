@@ -30,6 +30,5 @@ public class BallLogic
     public void Stop()
     {
         this.isEnabled = false;
-        runningThread.Join();
     }
 }
