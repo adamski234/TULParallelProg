@@ -11,7 +11,7 @@ public class BallLogicTest
 	{
 		Ball ball = new Ball(5, 5, 5);
 		object mutex = new object();
-		BallLogic logic = new BallLogic(ball, ref mutex);
+		BallLogic logic = new BallLogic(ball, ref mutex, 500, 500);
 		Thread.Sleep(300);
 		double currentX, currentY;
 		lock (mutex)

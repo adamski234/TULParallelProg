@@ -21,21 +21,22 @@ public class BallLogic
 		{
 			while (isEnabled)
 			{
-				Random source = new Random();
-				int moveX, moveY;
-				do
+				if (!((this.ball.X + this.ball.speedX) > 0 &&
+				      (this.ball.X + this.ball.speedX) < (sceneWidth - this.ball.Radius)))
 				{
-					moveX = source.Next(-5, 5);
-					moveY = source.Next(-5, 5);
-					//Trace.WriteLine($"{moveX} {moveY} {ball.X} {ball.Y} {sceneHeight} {sceneWidth}");
-				} while (!(
-					(this.ball.X + moveX) > 0 && (this.ball.X + moveX) < (sceneWidth - this.ball.Radius) &&
-					(this.ball.Y + moveY) > 0 && (this.ball.Y + moveY) < (sceneHeight - this.ball.Radius)
-				));
+					Trace.WriteLine($"x {sceneWidth} {this.ball.X}");
+					this.ball.speedX = -this.ball.speedX;
+				}
+				if (!((this.ball.Y + this.ball.speedY) > 0 &&
+				      (this.ball.Y + this.ball.speedY) < (sceneHeight - this.ball.Radius)))
+				{
+					Trace.WriteLine($"y {sceneHeight} {this.ball.Y}");
+					this.ball.speedY = -this.ball.speedY;
+				}
 				lock (mutex)
 				{
-					this.ball.X += moveX;
-					this.ball.Y += moveY;
+					this.ball.X += this.ball.speedX;
+					this.ball.Y += this.ball.speedY;
 				}
 				Thread.Sleep(50); // 20 tps tickrate
 			}

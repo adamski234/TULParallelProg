@@ -23,12 +23,12 @@ public class SceneUnitTest
 				{
 					continue;
 				}
-                    double distanceBetweenCentres = Math.Sqrt(Math.Pow(scene.Balls[i].X - scene.Balls[j].X, 2) + Math.Pow(scene.Balls[i].Y - scene.Balls[j].Y, 2));
+				double distanceBetweenCentres = Math.Sqrt(Math.Pow(scene.Balls[i].X - scene.Balls[j].X, 2) + Math.Pow(scene.Balls[i].Y - scene.Balls[j].Y, 2));
 				if (distanceBetweenCentres < scene.Balls[i].Radius + scene.Balls[j].Radius)
 				{
 					Assert.Fail("Balls overlap");
 				}
-                }
+			}
 		}
 	}
 }

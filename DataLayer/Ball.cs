@@ -19,11 +19,11 @@ public class Ball : INotifyPropertyChanged
         Random source = new Random();
         do
         {
-            this.speedX = source.NextDouble();
+            this.speedX = source.NextDouble() * 2;
         } while (speedX == 0);
         do
         {
-            this.speedY = source.NextDouble();
+            this.speedY = source.NextDouble() * 2;
         } while (speedY == 0);
     }
 
@@ -46,12 +46,6 @@ public class Ball : INotifyPropertyChanged
             this.y = value;
             OnPropertyChanged("Y");
         }
-    }
-
-    public void move()
-    {
-        this.X += this.speedX;
-        this.Y += this.speedY;
     }
 
 

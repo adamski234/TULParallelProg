@@ -9,7 +9,7 @@ namespace PresentationModelLayer
         private AbstractLogicApi LogicApi;
         public BallModel(int ballNumber)
         {   
-            LogicApi = AbstractLogicApi.CreateApi(500, 500, ballNumber, 15);
+            LogicApi = AbstractLogicApi.CreateApi(900, 600, ballNumber, 15);
         }
 
         public void StartSimulation()
