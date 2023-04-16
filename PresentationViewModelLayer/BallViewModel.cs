@@ -11,9 +11,9 @@ namespace PresentationViewModelLayer
 {
 	public class BallViewModel : INotifyPropertyChanged
 	{
+        private BallModel? _model;
 		public ObservableCollection<Ball> BallList { get; set; } = new ObservableCollection<Ball>();
         public int BallNumber { get; set; }
-        public BallModel? Model { get; set; }
         public ICommand StartSimulationCommand { get; set; }
         public ICommand StopSimulationCommand { get; set; }
 
@@ -27,20 +27,20 @@ namespace PresentationViewModelLayer
         {   
             if (BallNumber == BallList.Count)
             {
-                Model?.StartSimulation();
+                _model?.StartSimulation();
             } else
             {
-                Model?.StopSimulation();
-                Model = new BallModel(BallNumber);
-                BallList = new ObservableCollection<Ball>(Model.GetBalls());
+                _model?.StopSimulation();
+                _model = new BallModel(BallNumber);
+                BallList = new ObservableCollection<Ball>(_model.GetBalls());
                 OnPropertyChanged(nameof(BallList));
-                Model.StartSimulation();
+                _model.StartSimulation();
             }
         }
 
         public void Stop()
         {
-            Model?.StopSimulation();
+            _model?.StopSimulation();
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;
