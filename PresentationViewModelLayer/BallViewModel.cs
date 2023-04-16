@@ -30,7 +30,6 @@ namespace PresentationViewModelLayer
                 _model?.StartSimulation();
             } else
             {
-                _model?.StopSimulation();
                 _model = new BallModel(BallNumber);
                 BallList = new ObservableCollection<Ball>(_model.GetBalls());
                 OnPropertyChanged(nameof(BallList));
