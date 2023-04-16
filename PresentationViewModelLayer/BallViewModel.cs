@@ -27,9 +27,13 @@ namespace PresentationViewModelLayer
         {   
             if (BallNumber == BallList.Count)
             {
-                _model?.StartSimulation();
+                if (!_model.IsRunning())
+                {
+                    _model?.StartSimulation();
+                }
             } else
             {
+                _model?.StopSimulation();
                 _model = new BallModel(BallNumber);
                 BallList = new ObservableCollection<Ball>(_model.GetBalls());
                 OnPropertyChanged(nameof(BallList));

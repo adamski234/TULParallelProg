@@ -21,6 +21,10 @@ namespace PresentationModelLayer
         {
             _logicApi.Disable();
         }
+        public bool IsRunning()
+        {
+            return _logicApi.IsEnabled();
+        }
 
         public List<Ball> GetBalls()
         {

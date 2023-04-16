@@ -24,13 +24,13 @@ public class BallLogic
 				if (!((this.ball.X + this.ball.speedX) > 0 &&
 				      (this.ball.X + this.ball.speedX) < (sceneWidth - this.ball.Radius)))
 				{
-					Trace.WriteLine($"x {sceneWidth} {this.ball.X}");
+					//Trace.WriteLine($"x {sceneWidth} {this.ball.X}");
 					this.ball.speedX = -this.ball.speedX;
 				}
 				if (!((this.ball.Y + this.ball.speedY) > 0 &&
 				      (this.ball.Y + this.ball.speedY) < (sceneHeight - this.ball.Radius)))
 				{
-					Trace.WriteLine($"y {sceneHeight} {this.ball.Y}");
+					//Trace.WriteLine($"y {sceneHeight} {this.ball.Y}");
 					this.ball.speedY = -this.ball.speedY;
 				}
 				lock (mutex)
@@ -41,6 +41,7 @@ public class BallLogic
 				Thread.Sleep(50); // 20 tps tickrate
 			}
 		});
+		this.runningThread.Name = "ball";
 		this.runningThread.Start();
 	}
 	public void Stop()
