@@ -5,7 +5,8 @@ public abstract class AbstractDataApi
     public abstract List<Ball> GetBalls();
     public abstract Scene GetScene();
 
-    public static AbstractDataApi CreateApi(int width, int height, int ballCount, int ballRadius)
+
+	public static AbstractDataApi CreateApi(int width, int height, int ballCount, int ballRadius)
     {
         return new DataApi(width, height, ballCount, ballRadius);
     }

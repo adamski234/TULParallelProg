@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 
 namespace DataLayer;
@@ -10,13 +11,18 @@ public class Ball : INotifyPropertyChanged
     public double Radius { get; }
     public double speedX;
     public double speedY;
+    private bool isEnabled = true;
+    private Thread runningThread;
+    private object mutex;
 
-    public Ball(double x, double y, double radius)
+
+	public Ball(double x, double y, double radius, ref object mutexObject)
     {
         this.x = x;
         this.y = y;
         this.Radius = radius;
-        Random source = new Random();
+        this.mutex = mutexObject;
+		Random source = new Random();
         do
         {
             this.speedX = source.NextDouble() * 2;
@@ -33,7 +39,7 @@ public class Ball : INotifyPropertyChanged
         set
         {
             this.x = value;
-            OnPropertyChanged("X");
+            OnPropertyChanged();
         }
 
     }
@@ -44,10 +50,33 @@ public class Ball : INotifyPropertyChanged
         set
         {
             this.y = value;
-            OnPropertyChanged("Y");
+            OnPropertyChanged();
         }
     }
 
+    public void Enable()
+    {
+		this.runningThread = new Thread(() =>
+		{
+			while (isEnabled)
+			{
+				lock (mutex)
+				{
+					this.X += this.speedX;
+					this.Y += this.speedY;
+                    OnPropertyChanged("Position"); // Stupid workaround to get a specific single event for movement, rather than two for each coord
+				}
+				Thread.Sleep(50); // 20 tps tickrate
+			}
+		});
+		this.isEnabled = true;
+        this.runningThread.Start();
+	}
+
+    public void Disable()
+    {
+	    this.isEnabled = false;
+    }
 
     #region INotifyPropertyChanged
     

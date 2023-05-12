@@ -5,8 +5,9 @@ public class Scene
     public readonly int Width;
     public readonly int Height;
     public readonly List<Ball> Balls = new List<Ball>();
+    private object mutex = new object();
 
-    public Scene(int width, int height, int ballRadius, int ballCount)
+	public Scene(int width, int height, int ballRadius, int ballCount)
     {
         this.Width = width;
         this.Height = height;
@@ -40,7 +41,7 @@ public class Scene
             }
             if (overlapCounter == 0)
             {
-                this.Balls.Add(new Ball(x, y, ballRadius));
+                this.Balls.Add(new Ball(x, y, ballRadius, ref mutex));
                 return;
             }
         }
