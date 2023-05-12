@@ -6,25 +6,29 @@ namespace PresentationModelLayer
 {
     public class BallModel
     {
-        private AbstractLogicApi LogicApi;
+        private readonly AbstractLogicApi _logicApi;
         public BallModel(int ballNumber)
         {   
-            LogicApi = AbstractLogicApi.CreateApi(900, 600, ballNumber, 15);
+            _logicApi = AbstractLogicApi.CreateApi(900, 600, ballNumber, 15);
         }
 
         public void StartSimulation()
         {
-            LogicApi.Enable();
+            _logicApi.Enable();
         }
 
         public void StopSimulation()
         {
-            LogicApi.Disable();
+            _logicApi.Disable();
+        }
+        public bool IsRunning()
+        {
+            return _logicApi.IsEnabled();
         }
 
         public List<Ball> GetBalls()
         {
-            return LogicApi.GetBalls();
+            return _logicApi.GetBalls();
         }
 
 

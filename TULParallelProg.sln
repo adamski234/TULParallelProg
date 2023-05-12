@@ -3,23 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33414.496
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataLayer", "DataLayer\DataLayer.csproj", "{FDB5E698-A3F8-4F7E-B8A0-6B43F88F736A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataLayer", "DataLayer\DataLayer.csproj", "{FDB5E698-A3F8-4F7E-B8A0-6B43F88F736A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogicLayer", "LogicLayer\LogicLayer.csproj", "{E85AF3EB-1D4B-4E18-A82A-1E85004F2F3C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogicLayer", "LogicLayer\LogicLayer.csproj", "{E85AF3EB-1D4B-4E18-A82A-1E85004F2F3C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PresentationLayer", "PresentationLayer", "{FEDCEA56-83F5-4534-92D2-007978D12651}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PresentationViewLayer", "PresentationViewLayer\PresentationViewLayer.csproj", "{B0DFF851-DCE5-48A2-A3E4-3E2889F3BA02}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PresentationViewLayer", "PresentationViewLayer\PresentationViewLayer.csproj", "{B0DFF851-DCE5-48A2-A3E4-3E2889F3BA02}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PresentationViewModelLayer", "PresentationViewModelLayer\PresentationViewModelLayer.csproj", "{0445BBDC-7F9D-4B36-B7FB-328AEC03F620}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PresentationViewModelLayer", "PresentationViewModelLayer\PresentationViewModelLayer.csproj", "{0445BBDC-7F9D-4B36-B7FB-328AEC03F620}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PresentationModelLayer", "PresentationModelLayer\PresentationModelLayer.csproj", "{E1940735-CE0F-46B8-A684-A0DE3718FCBD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PresentationModelLayer", "PresentationModelLayer\PresentationModelLayer.csproj", "{E1940735-CE0F-46B8-A684-A0DE3718FCBD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataLayerTest", "DataLayerTest\DataLayerTest.csproj", "{1F4AA0FF-3F7C-4C69-A6D1-7022FE7DB4F2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataLayerTest", "DataLayerTest\DataLayerTest.csproj", "{1F4AA0FF-3F7C-4C69-A6D1-7022FE7DB4F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogicLayerTest", "LogicLayerTest\LogicLayerTest.csproj", "{1851E4EA-2B9E-4506-AD94-0F16C596BC23}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PresentationViewModelLayerTest", "PresentationViewModelLayerTest\PresentationViewModelLayerTest.csproj", "{0C306C97-AB10-44B3-B85C-E2196977174F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogicLayerTest", "LogicLayerTest\LogicLayerTest.csproj", "{1851E4EA-2B9E-4506-AD94-0F16C596BC23}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,10 +53,6 @@ Global
 		{1851E4EA-2B9E-4506-AD94-0F16C596BC23}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1851E4EA-2B9E-4506-AD94-0F16C596BC23}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1851E4EA-2B9E-4506-AD94-0F16C596BC23}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0C306C97-AB10-44B3-B85C-E2196977174F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0C306C97-AB10-44B3-B85C-E2196977174F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0C306C97-AB10-44B3-B85C-E2196977174F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0C306C97-AB10-44B3-B85C-E2196977174F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -67,7 +61,6 @@ Global
 		{B0DFF851-DCE5-48A2-A3E4-3E2889F3BA02} = {FEDCEA56-83F5-4534-92D2-007978D12651}
 		{0445BBDC-7F9D-4B36-B7FB-328AEC03F620} = {FEDCEA56-83F5-4534-92D2-007978D12651}
 		{E1940735-CE0F-46B8-A684-A0DE3718FCBD} = {FEDCEA56-83F5-4534-92D2-007978D12651}
-		{0C306C97-AB10-44B3-B85C-E2196977174F} = {FEDCEA56-83F5-4534-92D2-007978D12651}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {01F16FFE-7FB7-4D3C-822A-146CB982B491}
