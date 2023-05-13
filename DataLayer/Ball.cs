@@ -25,11 +25,11 @@ public class Ball : INotifyPropertyChanged
 		Random source = new Random();
         do
         {
-            this.speedX = source.NextDouble() * 4;
+            this.speedX = source.NextDouble() * 3;
         } while (speedX == 0);
         do
         {
-            this.speedY = source.NextDouble() * 4;
+            this.speedY = source.NextDouble() * 3;
         } while (speedY == 0);
     }
 
@@ -66,7 +66,7 @@ public class Ball : INotifyPropertyChanged
 					this.Y += this.speedY;
                     OnPropertyChanged("Position"); // Stupid workaround to get a specific single event for movement, rather than two for each coord
 				}
-				Thread.Sleep(50); // 20 tps tickrate
+				Thread.Sleep(25); // 40 tps tickrate
 			}
 		});
 		this.isEnabled = true;

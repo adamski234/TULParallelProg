@@ -97,13 +97,29 @@ namespace LogicLayer
 							ball.Radius / 2; // radius is actually diameter so it needs to be halved
 						if (distanceBetweenCenters <= minimalCollisionDistance)
 						{
-							double newSpeed = ((ball.speedX * (ball.Radius - thisObject.Radius) + (thisObject.Radius * thisObject.speedX * 2)) / (ball.Radius + thisObject.Radius));
-							thisObject.speedX = ((thisObject.speedX * (thisObject.Radius - ball.Radius) + (ball.Radius * ball.speedX * 2)) / (ball.Radius + thisObject.Radius));
-							ball.speedX = newSpeed;
+							double dx = ball.X - thisObject.X;
+							double dy = ball.Y - thisObject.Y;
 
-							newSpeed = ((ball.speedY * (ball.Radius - thisObject.Radius)) + (thisObject.Radius * thisObject.speedY * 2) / (ball.Radius + thisObject.Radius));
-							thisObject.speedY = ((thisObject.speedY * (thisObject.Radius - ball.Radius)) + (ball.Radius * ball.speedY * 2) / (ball.Radius + thisObject.Radius));
-							ball.speedY = newSpeed;
+							// normal vectors
+							double nx = dx / distanceBetweenCenters;
+							double ny = dy / distanceBetweenCenters;
+
+							// dot product of the velocity and the tangent vector
+							double ballTan = ball.speedX * -ny + ball.speedY * nx;
+							double thisObjectTan = thisObject.speedX * -ny + thisObject.speedY * nx;
+
+							// the balls are massless so mass is const = 10 
+							double newBallSpeed = (ball.speedX * nx + ball.speedY * ny + 2 * 10 * (thisObject.speedX * nx + thisObject.speedY * ny)) / (2 * 10);
+							double newThisObjectSpeed = (thisObject.speedX * nx + thisObject.speedY * ny + 2 * 10 * (ball.speedX * nx + ball.speedY * ny)) / (2 * 10);
+
+							ball.speedX = newBallSpeed * nx + ballTan * -ny;
+							ball.speedY = newBallSpeed * ny + ballTan * nx;
+							thisObject.speedX = newThisObjectSpeed * nx + thisObjectTan * -ny;
+							thisObject.speedY = newThisObjectSpeed * ny + thisObjectTan * nx;
+
+							// move one of the balls to stop being in a state of collision
+							ball.X += (minimalCollisionDistance - distanceBetweenCenters) * dx / distanceBetweenCenters;
+							ball.Y += (minimalCollisionDistance - distanceBetweenCenters) * dy / distanceBetweenCenters;
 
 							return;
 						}
