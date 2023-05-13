@@ -97,15 +97,14 @@ namespace LogicLayer
 							ball.Radius / 2; // radius is actually diameter so it needs to be halved
 						if (distanceBetweenCenters <= minimalCollisionDistance)
 						{
-							// we have a collision
-							// Placeholder inversion of direction
-							// TODO actually implement algorithm
-							double nx = (ball.X - thisObject.X) / distanceBetweenCenters;
-							double ny = (ball.Y - thisObject.Y) / distanceBetweenCenters;
-							double p = 2 * (thisObject.speedX * nx + thisObject.speedY * ny - ball.speedX * nx + ball.speedY * ny) / 20;
+							double newSpeed = ((ball.speedX * (ball.Radius - thisObject.Radius) + (thisObject.Radius * thisObject.speedX * 2)) / (ball.Radius + thisObject.Radius));
+							thisObject.speedX = ((thisObject.speedX * (thisObject.Radius - ball.Radius) + (ball.Radius * ball.speedX * 2)) / (ball.Radius + thisObject.Radius));
+							ball.speedX = newSpeed;
 
-							thisObject.speedX = thisObject.speedX - p * 10 * nx;
-							thisObject.speedY = thisObject.speedY - p * 10 * ny;
+							newSpeed = ((ball.speedY * (ball.Radius - thisObject.Radius)) + (thisObject.Radius * thisObject.speedY * 2) / (ball.Radius + thisObject.Radius));
+							thisObject.speedY = ((thisObject.speedY * (thisObject.Radius - ball.Radius)) + (ball.Radius * ball.speedY * 2) / (ball.Radius + thisObject.Radius));
+							ball.speedY = newSpeed;
+
 							return;
 						}
 					}
