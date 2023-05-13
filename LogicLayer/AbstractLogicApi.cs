@@ -100,8 +100,12 @@ namespace LogicLayer
 							// we have a collision
 							// Placeholder inversion of direction
 							// TODO actually implement algorithm
-							thisObject.speedX = -thisObject.speedX;
-							thisObject.speedY = -thisObject.speedY;
+							double nx = (ball.X - thisObject.X) / distanceBetweenCenters;
+							double ny = (ball.Y - thisObject.Y) / distanceBetweenCenters;
+							double p = 2 * (thisObject.speedX * nx + thisObject.speedY * ny - ball.speedX * nx + ball.speedY * ny) / 20;
+
+							thisObject.speedX = thisObject.speedX - p * 10 * nx;
+							thisObject.speedY = thisObject.speedY - p * 10 * ny;
 							return;
 						}
 					}
