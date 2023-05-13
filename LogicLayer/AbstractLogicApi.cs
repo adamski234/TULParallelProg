@@ -11,7 +11,6 @@ namespace LogicLayer
 		public abstract void Enable();
 		public abstract void Disable();
 		public abstract bool IsEnabled();
-		private object modifierLock = new();
 
 		public static AbstractLogicApi CreateApi(int width, int height, int ballCount, int ballRadius)
 		{
@@ -25,15 +24,12 @@ namespace LogicLayer
 			public LogicApi(int width, int height, int ballCount, int ballRadius)
 			{
 				this.data = AbstractDataApi.CreateApi(width, height, ballCount, ballRadius);
-				lock (modifierLock)
+				foreach (var ball in this.GetBalls())
 				{
-					foreach (var ball in this.GetBalls())
-					{
-						BallLogic logic = new BallLogic(ball);
-						logic.PropertyChanged += Update;
-						logicList.Add(logic);
-						logic.Start();
-					}
+					BallLogic logic = new BallLogic(ball);
+					logic.PropertyChanged += Update;
+					logicList.Add(logic);
+					logic.Start();
 				}
 			}
 			public override List<Ball> GetBalls()
@@ -44,24 +40,18 @@ namespace LogicLayer
 			public override void Enable()
 			{
 				this.enabled = true;
-				lock (modifierLock)
+				foreach (var logic in this.logicList) 
 				{
-					foreach (var logic in this.logicList)
-					{
-						logic.Start();
-					}
+					logic.Start();
 				}
 			}
 
 			public override void Disable()
 			{
 				this.enabled = false;
-				lock (modifierLock)
+				foreach (var logic in logicList)
 				{
-					foreach (var logic in logicList)
-					{
-						logic.Stop();
-					}
+					logic.Stop();
 				}
 			}
 
@@ -76,14 +66,9 @@ namespace LogicLayer
 				// therefore there is no need to lock
 
 				Ball thisObject = (Ball)sender;
-				// check for collision between balls
-				lock (modifierLock)
-				{
-					this.data.GetBalls().Sort((left, right) => left.X.CompareTo(right.X));
-				}
-				// logicList is sorted by X coord
 
-				if (args.PropertyName == "Position") // this is stupid 
+				// check for collision between balls
+				if (args.PropertyName == "Position")
 				{
 					foreach (var ball in data.GetBalls())
 					{
@@ -130,17 +115,33 @@ namespace LogicLayer
 				// check for collision against walls
 				if (args.PropertyName == "X")
 				{
-					if (!(thisObject.X > 0 && thisObject.X < (data.GetScene().Width - thisObject.Radius)))
+					if (!(thisObject.X >= 0 && thisObject.X <= (data.GetScene().Width - thisObject.Radius)))
 					{
 						thisObject.speedX = -thisObject.speedX;
+						if (thisObject.X < 0)
+						{
+							thisObject.X = 0;
+						}
+						else
+						{
+							thisObject.X = data.GetScene().Width - thisObject.Radius;
+						}
 					}
 				}
 
 				if (args.PropertyName == "Y")
 				{
-					if (!(thisObject.Y > 0 && thisObject.Y < (data.GetScene().Height - thisObject.Radius)))
+					if (!(thisObject.Y >= 0 && thisObject.Y <= (data.GetScene().Height - thisObject.Radius)))
 					{
 						thisObject.speedY = -thisObject.speedY;
+						if (thisObject.Y < 0)
+						{
+							thisObject.Y = 0;
+						}
+						else
+						{
+							thisObject.Y = data.GetScene().Height - thisObject.Radius;
+						}
 					}
 				}
 			}
