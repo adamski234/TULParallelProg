@@ -1,17 +1,16 @@
-using DataLayer;
-using LogicLayer;
+﻿using DataLayer;
 
-namespace LogicLayerTest;
+namespace DataLayerTest;
 
 [TestClass]
-public class BallLogicTest
+public class BallTest
 {
 	[TestMethod]
 	public void TestMoving()
 	{
-		Ball ball = new Ball(5, 5, 5);
 		object mutex = new object();
-		BallLogic logic = new BallLogic(ball, ref mutex, 500, 500);
+		Ball ball = new Ball(5, 5, 5, ref mutex);
+		ball.Enable();
 		Thread.Sleep(300);
 		double currentX, currentY;
 		lock (mutex)
@@ -24,13 +23,13 @@ public class BallLogicTest
 			Assert.AreEqual(currentX, ball.X); // check that balls aren't moving while mutex is locked
 			Assert.AreEqual(currentY, ball.Y);
 		}
-		logic.Stop();
 		Thread.Sleep(300); // allow all threads to finish
 		// check that threads respect disabling
+		ball.Disable();
 		currentY = ball.Y;
 		currentX = ball.X;
 		Thread.Sleep(300);
 		Assert.AreEqual(currentX, ball.X); // check that balls haven't moved after disabling
-        Assert.AreEqual(currentY, ball.Y);
+		Assert.AreEqual(currentY, ball.Y);
 	}
 }
