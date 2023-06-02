@@ -9,7 +9,7 @@ public class BallTest
 	public void TestMoving()
 	{
 		object mutex = new object();
-		Ball ball = new Ball(5, 5, 5, ref mutex);
+		Ball ball = new Ball(5, 5, 5, ref mutex, 1);
 		ball.Enable();
 		Thread.Sleep(300);
 		double currentX, currentY;

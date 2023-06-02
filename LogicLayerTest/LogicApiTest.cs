@@ -11,6 +11,7 @@ public class LogicApiTest
 	public void TestCollision()
 	{
 		AbstractLogicApi api = AbstractLogicApi.CreateApi(500, 500, 2, 15);
+		api.Enable();
 		api.Disable();
 		List<Ball> balls = api.GetBalls();
 		Assert.IsNotNull(balls);
