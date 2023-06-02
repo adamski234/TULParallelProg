@@ -24,7 +24,7 @@ namespace DataLayer
 
 		public static void Init()
 		{	
-			_path = $"{Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent}\\Log\\ball_log.json";
+			_path = $"{Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent}\\ball_log.json";
 			if (File.Exists(_path))
 			{
 				File.Delete(_path);
