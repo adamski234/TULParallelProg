@@ -18,11 +18,11 @@ public class Scene
     {
         for (int i = 0; i < ballCount; i++)
         {
-            AddBall(ballRadius);
+            AddBall(ballRadius, i);
         }
     }
 
-    private void AddBall(int ballRadius)
+    private void AddBall(int ballRadius, int id)
     {
         int x, y;
         Random source = new Random();
@@ -41,7 +41,7 @@ public class Scene
             }
             if (overlapCounter == 0)
             {
-                this.Balls.Add(new Ball(x, y, ballRadius, ref mutex));
+                this.Balls.Add(new Ball(x, y, ballRadius, ref mutex, id));
                 return;
             }
         }

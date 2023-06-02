@@ -8,6 +8,7 @@ public class Ball : INotifyPropertyChanged
 {
     private double x;
     private double y;
+    public int Id { get; }
     public double Radius { get; }
     public double speedX;
     public double speedY;
@@ -16,8 +17,9 @@ public class Ball : INotifyPropertyChanged
     private object mutex;
 
 
-	public Ball(double x, double y, double radius, ref object mutexObject)
-    {
+	public Ball(double x, double y, double radius, ref object mutexObject, int id)
+    {   
+        this.Id = id;
         this.x = x;
         this.y = y;
         this.Radius = radius;

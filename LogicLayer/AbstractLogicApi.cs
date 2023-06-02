@@ -1,7 +1,6 @@
-
-using System.ComponentModel;
-using System.Diagnostics;
 using DataLayer;
+using System.ComponentModel;
+using System.Timers;
 
 namespace LogicLayer
 {
@@ -21,6 +20,7 @@ namespace LogicLayer
 			private AbstractDataApi data;
 			private bool enabled = false;
 			private List<BallLogic> logicList = new List<BallLogic>();
+			private static System.Timers.Timer timer;
 			public LogicApi(int width, int height, int ballCount, int ballRadius)
 			{
 				this.data = AbstractDataApi.CreateApi(width, height, ballCount, ballRadius);
@@ -44,6 +44,8 @@ namespace LogicLayer
 				{
 					logic.Start();
 				}
+				Logger.Init();
+				SetTimer();
 			}
 
 			public override void Disable()
@@ -53,6 +55,8 @@ namespace LogicLayer
 				{
 					logic.Stop();
 				}
+				timer.Stop();
+				timer.Dispose();
 			}
 
 			public override bool IsEnabled()
@@ -143,6 +147,22 @@ namespace LogicLayer
 							thisObject.Y = data.GetScene().Height - thisObject.Radius;
 						}
 					}
+				}
+			}
+
+			private void SetTimer()
+			{
+				timer = new  System.Timers.Timer(1000);
+				timer.Elapsed += OnTimedEvent;
+				timer.AutoReset = true;
+				timer.Enabled = true;
+			}
+
+			private void OnTimedEvent(Object source, ElapsedEventArgs e)
+			{
+				foreach(var ball in data.GetBalls())
+				{
+					Logger.UpdateLog(ball);
 				}
 			}
 		}
